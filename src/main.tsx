@@ -1,0 +1,8 @@
+import React,{useState} from 'react';
+import {createRoot} from 'react-dom/client';
+import TechVision from './TechVision';
+import TechRobot from './TechRobot';
+import './style.css';
+import './games.css';
+function App(){const [game,setGame]=useState<'home'|'mario'|'vision'>('home');return game==='home'?<main className="hub"><header><div className="brand"><img src="/senac.svg" alt="Senac"/><div className="brandtext"><strong>SENAC — SÃO LEOPOLDO</strong><span>TECNOLOGIA</span></div></div></header><section className="hero"><span className="tag">INTELIGÊNCIA ARTIFICIAL EM MOVIMENTO</span><h1>TECH GAMES</h1><p>Seu corpo é o controle. Escolha sua experiência!</p></section><div className="game-grid"><button className="game-card mario-card" onClick={()=>setGame('mario')}><span className="game-art">🤖 ⚡ 🪙</span><h2>Tech Robot</h2><p>Feche a mão para saltar, desviar de obstáculos e coletar moedas.</p><b>JOGAR →</b></button><button className="game-card vision-card" onClick={()=>setGame('vision')}><span className="game-art">🎩 🕶️ 👑</span><h2>Tech Vision</h2><p>Experimente 39 acessórios virtuais usando gestos e realidade aumentada.</p><b>JOGAR →</b></button></div><footer>Senac São Leopoldo • Tecnologia • Visão computacional</footer></main>:<><nav className="game-nav"><button onClick={()=>setGame('home')}>← Menu de jogos</button><button onClick={()=>{if(document.fullscreenElement)void document.exitFullscreen();else void document.documentElement.requestFullscreen?.().catch(()=>{});}}>Tela cheia</button></nav>{game==='mario'?<TechRobot/>:<TechVision/>}</>};
+createRoot(document.getElementById('root')!).render(<App/>);
